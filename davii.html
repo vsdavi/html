@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+        .character-info {
+            margin-top: 20px;
+        }
+        .character-info p {
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Your Character</h1>
+        <div class="form-group">
+            <label for="characterName">Character Name:</label>
+            <input type="text" id="characterName" placeholder="Enter your character's name">
+        </div>
+        <button class="button" onclick="createCharacter()">Create Character</button>
+        
+        <div id="characterDetails" class="character-info" style="display: none;">
+            <h2>Character Info</h2>
+            <p><strong>Name:</strong> <span id="displayName"></span></p>
+            <p><strong>Power Level:</strong> <span id="powerLevel">1</span></p>
+            <p><strong>Points:</strong> <span id="points">0</span></p>
+            <button class="button" onclick="gainPoints()">Gain Points</button>
+        </div>
+    </div>
+
+    <script>
+        let points = 0;
+        let powerLevel = 1;
+
+        function createCharacter() {
+            const name = document.getElementById('characterName').value;
+            if (name.trim() === '') {
+                alert('Please enter a character name.');
+                return;
+            }
+
+            document.getElementById('displayName').textContent = name;
+            document.getElementById('characterDetails').style.display = 'block';
+        }
+
+        function gainPoints() {
+            points += 10;
+            document.getElementById('points').textContent = points;
+
+            if (points % 50 === 0) {
+                powerLevel += 1;
+                document.getElementById('powerLevel').textContent = powerLevel;
+                alert('Level up! Your new power level is ' + powerLevel);
+            }
+        }
+    </script>
+</body>
+</html>
